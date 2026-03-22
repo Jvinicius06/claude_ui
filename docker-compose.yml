@@ -1,0 +1,25 @@
+services:
+  claude-code-ui:
+    build: .
+    container_name: claude-code-ui
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      # Option A: Use API key (pay-as-you-go)
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      # Option B: Leave ANTHROPIC_API_KEY empty and use OAuth login instead
+      #           (run: docker compose run --rm claude-code-ui login)
+      # - SERVER_PORT=3001
+      # - CONTEXT_WINDOW=160000
+    volumes:
+      # Persist Claude sessions, credentials and config
+      - claude-data:/root/.claude
+      # Persist Anthropic config
+      - anthropic-data:/root/.anthropic
+      # Mount your projects directory (adjust the left side to your VPS path)
+      - ./projects:/root/projects
+
+volumes:
+  claude-data:
+  anthropic-data:

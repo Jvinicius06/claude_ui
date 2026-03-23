@@ -34,6 +34,7 @@ WORKDIR /home/claudeuser
 
 # Entrypoint script to handle login or start
 COPY --chown=claudeuser:claudeuser entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cloudcli"]

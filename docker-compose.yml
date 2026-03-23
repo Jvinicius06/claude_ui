@@ -13,13 +13,8 @@ services:
       # - SERVER_PORT=3001
       # - CONTEXT_WINDOW=160000
     volumes:
-      # Persist Claude sessions, credentials and config
-      - claude-data:/root/.claude
-      # Persist Anthropic config
-      - anthropic-data:/root/.anthropic
-      # Mount your projects directory (adjust the left side to your VPS path)
-      - ./projects:/root/projects
-
-volumes:
-  claude-data:
-  anthropic-data:
+      # Reuse host login/credentials
+      - /root/.claude:/home/claudeuser/.claude
+      - /root/.anthropic:/home/claudeuser/.anthropic
+      # Mount your projects directory
+      - /root/projects:/home/claudeuser/projects

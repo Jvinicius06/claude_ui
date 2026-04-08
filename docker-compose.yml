@@ -15,7 +15,9 @@ services:
       # Reuse host login/credentials
       - /root/.claude:/home/claudeuser/.claude
       - /root/.anthropic:/home/claudeuser/.anthropic
-      # Git credentials (persistent GitHub login from host)
+      # Git credentials seed from host (read-only, only used on first run to
+      # populate the persistent store under .cloudcli/git-credentials).
+      # Tokens entered inside the container are saved there and survive restarts.
       - /root/.git-credentials:/home/claudeuser/.git-credentials.host:ro
       - /root/.gitconfig:/home/claudeuser/.gitconfig.host:ro
       # Claude Code UI persistent data (users, auth, plugins)

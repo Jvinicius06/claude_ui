@@ -21,11 +21,11 @@ RUN mkdir -p /home/claudeuser/.claude /home/claudeuser/.anthropic \
     && chown -R claudeuser:claudeuser /home/claudeuser/.claude /home/claudeuser/.anthropic
 
 # Expose the default port
-EXPOSE 3001
+EXPOSE 5001
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=3001
+ENV PORT=5001
 ENV HOME=/home/claudeuser
 
 # Switch to non-root user
